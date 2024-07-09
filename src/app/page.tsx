@@ -1,6 +1,8 @@
+import { getCurrentUser } from "@/actions/user";
 import { Header } from "@/components/Header";
 
 export default function Home() {
+  getCurrentUser();
   return (
     <div>
       <Header />
