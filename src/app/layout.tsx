@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -19,9 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>
-        <Toaster richColors />
-        {children}
+      <body className={`${font.className} ${"theme-orange"}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Toaster richColors />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
