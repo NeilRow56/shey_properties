@@ -10,6 +10,7 @@ import {
 import { Loader } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export const Header = () => {
   return (
@@ -21,25 +22,32 @@ export const Header = () => {
             Shey Properties
           </h1>
         </div>
-        <ClerkLoading>
-          <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
-        </ClerkLoading>
-        <ClerkLoaded>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton mode="redirect">
-              <Button
-                size="lg"
-                variant="ghost"
-                className="text-slate-50 text-lg"
-              >
-                Login
+        <div className="flex gap-3 items-center">
+          <ClerkLoading>
+            <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
+          </ClerkLoading>
+          <ClerkLoaded>
+            <SignedIn>
+              <Button asChild variant="ghost">
+                <Link href="/site/user/properties" className="text-slate-50">
+                  Your properties
+                </Link>
               </Button>
-            </SignInButton>
-          </SignedOut>
-        </ClerkLoaded>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="redirect">
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-slate-50 text-lg"
+                >
+                  Login
+                </Button>
+              </SignInButton>
+            </SignedOut>
+          </ClerkLoaded>
+        </div>
       </div>
     </header>
   );
