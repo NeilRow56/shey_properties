@@ -7,9 +7,35 @@ import { Media } from "./media";
 import { Contact } from "./contact";
 import { cn } from "@/lib/utils";
 
+export interface PropertiesFormStepProps {
+  currentStep: number;
+  setCurrentStep: (currentStep: number) => void;
+  finalValues: any;
+  setFinalValues: (finalValues: any) => void;
+  
+}
+
 export const PropertyForm = () => {
 
+  const [finalValues, setFinalValues] = useState({
+    basic: {},
+    location: {},
+    amenities: {},
+    media: {
+      
+    },
+    contact: {},
+  });
+
   const [ currentStep, setCurrentStep] = useState(0) 
+
+  const commonPropsForSteps = {
+    currentStep,
+    setCurrentStep,
+    finalValues,
+    setFinalValues
+    
+  };
 
   const steps = [
     {
@@ -83,27 +109,27 @@ export const PropertyForm = () => {
      <div className="mt-8">
       {currentStep === 0 && (
           
-          <Basic />
+          <Basic {...commonPropsForSteps} />
           
         )}
       {currentStep === 1 && (
           
-          <Location />
+          <Location  {...commonPropsForSteps}/>
           
         )}
       {currentStep === 2 && (
           
-          <Amenities />
+          <Amenities  {...commonPropsForSteps}/>
           
         )}
       {currentStep === 3 && (
           
-          <Media/>
+          <Media {...commonPropsForSteps}/>
           
         )}
       {currentStep === 4 && (
           
-          <Contact />
+          <Contact  {...commonPropsForSteps}/>
           
         )}
       </div>
