@@ -21,9 +21,7 @@ export const PropertyForm = () => {
     basic: {},
     location: {},
     amenities: {},
-    media: {
-      
-    },
+    media: {},
     contact: {},
   });
 
