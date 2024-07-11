@@ -104,7 +104,7 @@ export const PropertyForm = () => {
       </nav>
 
       
-     <div className="mt-8">
+     <div className="mt-12 ">
       {currentStep === 0 && (
           
           <Basic {...commonPropsForSteps} />

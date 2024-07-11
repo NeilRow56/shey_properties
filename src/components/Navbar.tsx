@@ -4,7 +4,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -22,6 +21,7 @@ import { Button } from "./ui/button";
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { getCurrentUser } from "@/actions/user";
+
 
 export const Navbar = async () => {
   const clerkUser = await currentUser();
@@ -73,11 +73,7 @@ export const Navbar = async () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                {/* <div className="mr-3">
-                <Button size="sm" className="ml-4  px-4 bg-[#1B4242] ">
-                  {user.firstName}
-                </Button>
-              </div> */}
+                
               </div>
             ) : (
               <div className="">
@@ -121,8 +117,8 @@ export const Navbar = async () => {
           </Link>
           <div className="bg-slate-50 flex items-center p-2 rounded-md">
             {user ? (
-              <div className="flex w-full items-center">
-                <div className=" space-x-2">
+              <div className="flex w-full items-center ">
+                <div className=" space-x-2 ">
                   <DropdownMenu>
                     <DropdownMenuTrigger className=" text-[#1B4242] mr-4">
                       <span>{user.data?.username}</span>
@@ -154,11 +150,7 @@ export const Navbar = async () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                {/* <div className="mr-3">
-                  <Button size="sm" className="ml-4  px-4 bg-[#1B4242] ">
-                    {user.firstName}
-                  </Button>
-                </div> */}
+                
               </div>
             ) : (
               <div className="">
@@ -170,7 +162,7 @@ export const Navbar = async () => {
             <ClerkLoading>
               <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
             </ClerkLoading>
-            <ClerkLoaded>
+            <ClerkLoaded >
               <SignedIn>
                 <UserButton />
               </SignedIn>

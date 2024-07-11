@@ -22,16 +22,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${font.className} ${"theme-orange"}`}>
-          <ThemeProvider
-            attribute="class"
+        <body  className={`${font.className} ${"theme-zinc"}`}>
+          {/* <ThemeProvider */}
+            {/* attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
+          > */}
             <Toaster richColors />
             {children}
-          </ThemeProvider>
+          {/* </ThemeProvider> */}
         </body>
       </html>
     </ClerkProvider>
