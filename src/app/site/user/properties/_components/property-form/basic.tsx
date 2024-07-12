@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { PropertiesFormStepProps } from ".";
-import { Button } from "@/components/ui/button";
+import { Button } from "antd";
 
 export const Basic = ({
   currentStep,
@@ -12,7 +12,17 @@ export const Basic = ({
   return (
     <div>
       <span>Basic</span>
-      <div className=" flex justify-end gap-5 mt-7"></div>
+      <div className="flex justify-end gap-5 mt-7">
+        <Button
+          disabled={currentStep === 0}
+          onClick={() => setCurrentStep(currentStep - 1)}
+        >
+          Back
+        </Button>
+        <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>
+          Next
+        </Button>
+      </div>
     </div>
   );
 };

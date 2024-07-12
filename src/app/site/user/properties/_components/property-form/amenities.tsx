@@ -1,6 +1,6 @@
 import React from "react";
 import { PropertiesFormStepProps } from ".";
-import { Button } from "@/components/ui/button";
+import { Button } from "antd";
 
 export const Amenities = ({
   currentStep,
@@ -11,7 +11,17 @@ export const Amenities = ({
   return (
     <div>
       <span>Amenities</span>
-      <div className=" flex justify-end gap-5 mt-7"></div>
+      <div className="flex justify-end gap-5 mt-7">
+        <Button
+          disabled={currentStep === 0}
+          onClick={() => setCurrentStep(currentStep - 1)}
+        >
+          Back
+        </Button>
+        <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>
+          Next
+        </Button>
+      </div>
     </div>
   );
 };

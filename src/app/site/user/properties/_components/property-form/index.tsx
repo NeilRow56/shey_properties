@@ -55,8 +55,6 @@ export const PropertyForm = () => {
   ];
   return (
     <div>
-      {/* steps */}
-
       <Steps className="text-sm" current={currentStep} items={steps} />
 
       <div className="mt-8">{steps[currentStep].content}</div>
