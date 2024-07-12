@@ -22,7 +22,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { getCurrentUser } from "@/actions/user";
 
-
 export const Navbar = async () => {
   const clerkUser = await currentUser();
 
@@ -43,8 +42,10 @@ export const Navbar = async () => {
               <div className="flex w-full items-center">
                 <div className=" space-x-2">
                   <DropdownMenu>
-                    <DropdownMenuTrigger className=" text-[#1B4242] mr-4">
-                      <span>Personal Account</span>
+                    <DropdownMenuTrigger asChild>
+                      <Button className="mr-2" variant="outline">
+                        Personal Account
+                      </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       className="mr-4"
@@ -59,21 +60,33 @@ export const Navbar = async () => {
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link href="/site/user/account">Property account</Link>
+                        <Link
+                          className="no-underline"
+                          href="/site/user/account"
+                        >
+                          Property account
+                        </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/site/user/properties">Properties</Link>
+                        <Link
+                          className="no-underline"
+                          href="/site/user/properties"
+                        >
+                          Properties
+                        </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/site/user/subscriptions">
-                          subscriptions
+                        <Link
+                          className="no-underline"
+                          href="/site/user/subscriptions"
+                        >
+                          Subscriptions
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator className="bg-gray-200" />
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                
               </div>
             ) : (
               <div className="">
@@ -112,7 +125,7 @@ export const Navbar = async () => {
           <Link href="/" className="flex items-center gap-x-3 pb-7 pl-4 pt-8 ">
             <Image src="/logo.svg" alt="logo" height={40} width={40} />
             <h1 className="text-2xl font-extrabold tracking-wide text-slate-50">
-              Shey Properties
+              Shey Properties - Admin
             </h1>
           </Link>
           <div className="bg-slate-50 flex items-center p-2 rounded-md">
@@ -120,8 +133,10 @@ export const Navbar = async () => {
               <div className="flex w-full items-center ">
                 <div className=" space-x-2 ">
                   <DropdownMenu>
-                    <DropdownMenuTrigger className=" text-[#1B4242] mr-4">
-                      <span>{user.data?.username}</span>
+                    <DropdownMenuTrigger asChild>
+                      <Button className="mr-2" variant="outline">
+                        Personal Account
+                      </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       className="mr-4"
@@ -131,18 +146,31 @@ export const Navbar = async () => {
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
                         <h2 className="font-bold text-xl">
-                          {clerkUser?.firstName}: admin user
+                          {clerkUser?.firstName}: active user
                         </h2>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link href="/site/admin/users">Users</Link>
+                        <Link
+                          className="no-underline"
+                          href="/site/user/account"
+                        >
+                          Property account
+                        </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/site/admin/properties">Properties</Link>
+                        <Link
+                          className="no-underline"
+                          href="/site/user/properties"
+                        >
+                          Properties
+                        </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/site/admin/subscriptions">
+                        <Link
+                          className="no-underline"
+                          href="/site/user/subscriptions"
+                        >
                           Subscriptions
                         </Link>
                       </DropdownMenuItem>
@@ -150,7 +178,6 @@ export const Navbar = async () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                
               </div>
             ) : (
               <div className="">
@@ -162,7 +189,7 @@ export const Navbar = async () => {
             <ClerkLoading>
               <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
             </ClerkLoading>
-            <ClerkLoaded >
+            <ClerkLoaded>
               <SignedIn>
                 <UserButton />
               </SignedIn>

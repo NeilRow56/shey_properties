@@ -77,7 +77,10 @@ const config = {
   plugins: [
     require("tailwindcss-animate"), 
     require('@tailwindcss/forms')
-  ]
+  ],
+  corePlugins: {
+    preflight: false,
+  },
 } satisfies Config
 
 export default config 

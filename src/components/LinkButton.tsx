@@ -13,7 +13,7 @@ export const LinkButton = ({ title, href }: LinkButtonProps) => {
       variant="outline"
       className="border-[#1B4242] p-3 text-lg text-[#1B4242]"
     >
-      <Link className="" href={href}>
+      <Link className="no-underline" href={href}>
         {title}
       </Link>
     </Button>
