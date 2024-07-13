@@ -61,7 +61,7 @@ export const PropertyForm = () => {
     console.log(finalValues);
   }, [finalValues]);
   return (
-    <div>
+    <div className="py-12">
       <Steps className="text-sm" current={currentStep} items={steps} />
 
       <div className="mt-8">{steps[currentStep].content}</div>
