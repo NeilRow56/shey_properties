@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Basic } from "./basic";
 import { Location } from "./location";
 import { Amenities } from "./amenities";
@@ -53,6 +53,10 @@ export const PropertyForm = () => {
       content: <Contact {...commonPropsForSteps} />,
     },
   ];
+
+  useEffect(() => {
+    console.log(finalValues);
+  }, [finalValues]);
   return (
     <div>
       <Steps className="text-sm" current={currentStep} items={steps} />
