@@ -19,7 +19,10 @@ export const PropertyForm = () => {
     basic: {},
     location: {},
     amenities: {},
-    media: {},
+    media: {
+      newlyUploadedFiles: [],
+      images: [],
+    },
     contact: {},
   });
   const [currentStep = 0, setCurrentStep] = useState(0);

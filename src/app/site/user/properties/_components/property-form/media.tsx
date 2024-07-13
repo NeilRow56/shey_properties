@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { PropertiesFormStepProps } from ".";
-import { Button } from "antd";
+import { Button, Upload } from "antd";
 
 export const Media = ({
   currentStep,
@@ -8,9 +8,29 @@ export const Media = ({
   finalValues,
   setFinalValues,
 }: PropertiesFormStepProps) => {
+  const [tempFiles, setTempFiles] = useState<any[]>([]);
+  const onFinish = () => {
+    setFinalValues({
+      ...finalValues,
+      media: {
+        newlyUploadedFiles: tempFiles,
+        images: finalValues.media.images,
+      },
+    });
+    setCurrentStep(currentStep + 1);
+  };
   return (
     <div>
-      <span>Media</span>
+      <Upload
+        listType="picture-card"
+        multiple
+        beforeUpload={(file: any) => {
+          setTempFiles((prev) => [...prev, file]);
+          return false;
+        }}
+      >
+        Upload
+      </Upload>
       <div className="flex justify-end gap-5 mt-7">
         <Button
           disabled={currentStep === 0}
@@ -18,7 +38,7 @@ export const Media = ({
         >
           Back
         </Button>
-        <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>
+        <Button type="primary" onClick={() => onFinish()}>
           Next
         </Button>
       </div>
