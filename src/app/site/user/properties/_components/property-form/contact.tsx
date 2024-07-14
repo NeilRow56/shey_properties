@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { PropertiesFormStepProps } from ".";
 import { Button, Form, Input, Select, message } from "antd";
+import { UploadFilesToFirebaseAndReturnUrls } from "@/helpers/upload-media";
 
 export const Contact = ({
   currentStep,
@@ -8,9 +9,21 @@ export const Contact = ({
   finalValues,
   setFinalValues,
 }: PropertiesFormStepProps) => {
-  const onFinish = (values: any) => {
-    const tempFinalValues = { ...finalValues, contact: values };
-    console.log(tempFinalValues);
+  const onFinish = async (values: any) => {
+    try {
+      const tempFinalValues = { ...finalValues, contact: values };
+
+      // handle media upload
+      const tempMedia = tempFinalValues.media;
+      tempMedia.images = await UploadFilesToFirebaseAndReturnUrls(
+        tempMedia.newlyUploadedFiles
+      );
+
+      tempFinalValues.media = tempMedia;
+      console.log(tempFinalValues);
+    } catch (error: any) {
+      message.error(error.message);
+    }
   };
   return (
     <Form
