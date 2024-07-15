@@ -7,5 +7,15 @@ export const PropertiesTableClientide = ({
 }: {
   properties: Property[];
 }) => {
-  return <div>Properties Table Client Side</div>;
+  return (
+    <div>
+      <div>Properties Table Client Side</div>
+      <div></div>
+      {properties
+        ? properties.map((property) => (
+            <div key={property.id}>{property.name}</div>
+          ))
+        : ""}
+    </div>
+  );
 };
