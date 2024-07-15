@@ -24,7 +24,7 @@ export const AddProperty = async (property: Property) => {
   }
 };
 
-export const EditProperty = async (property: any, id: string) => {
+export const EditProperty = async (property: Property, id: string) => {
   try {
     await db.property.update({
       where: {
