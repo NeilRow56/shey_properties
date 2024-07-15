@@ -1,9 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PageTitle } from "@/components/PageTitle";
 import { LinkButton } from "@/components/LinkButton";
+import { Filters } from "@/components/Filters";
+import { PropertiesTable } from "./_components/properties-table";
+import { Spinner } from "@/components/Loader";
 
 const PropertiesPage = () => {
   return (
@@ -17,7 +20,10 @@ const PropertiesPage = () => {
         />
       </div>
 
-      <div>Properties Table</div>
+      <Filters />
+      <Suspense fallback={<Spinner />}>
+        <PropertiesTable />
+      </Suspense>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { GetCurrentUserFromMongoDB } from "./user";
 import { Property } from "@prisma/client";
 
-export const AddProperty = async (property: any) => {
+export const AddProperty = async (property: Property) => {
   try {
     const user: any = await GetCurrentUserFromMongoDB();
     property.userId = user.data.id;
