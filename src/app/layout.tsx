@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
+import "remixicon/fonts/remixicon.css";
 
 import { Toaster } from "sonner";
 

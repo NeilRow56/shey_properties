@@ -3,7 +3,11 @@ import React from "react";
 import { PropertiesTableClientide } from "./properties-table-client";
 
 export const PropertiesTable = async () => {
-  const properties = await db.property.findMany();
+  const properties = await db.property.findMany({
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
 
   return (
     <>
