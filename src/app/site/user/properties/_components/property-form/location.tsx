@@ -1,18 +1,19 @@
 import React from "react";
 import { PropertiesFormStepProps } from ".";
-import { Button, Input, Form } from "antd";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 
-export const Location = ({
+function Location({
   currentStep,
   setCurrentStep,
   finalValues,
   setFinalValues,
-}: PropertiesFormStepProps) => {
+}: PropertiesFormStepProps) {
   const onFinish = (values: any) => {
     setFinalValues({ ...finalValues, location: values });
     setCurrentStep(currentStep + 1);
   };
 
+  // city , pincode , lanmark , address
   return (
     <Form
       layout="vertical"
@@ -21,28 +22,28 @@ export const Location = ({
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <Form.Item
-          name="town"
-          label="Town"
+          name="city"
+          label="City"
           rules={[
             {
               required: true,
-              message: "Please input town!",
+              message: "Please input city!",
             },
           ]}
         >
-          <Input placeholder="Town" />
+          <Input placeholder="City" />
         </Form.Item>
         <Form.Item
-          name="postcode"
-          label="Postcode"
+          name="pincode"
+          label="Pincode"
           rules={[
             {
               required: true,
-              message: "Please input postcode!",
+              message: "Please input pincode!",
             },
           ]}
         >
-          <Input className="w-full" placeholder="Postcode" />
+          <Input className="w-full" placeholder="Pincode" />
         </Form.Item>
         <Form.Item
           name="landmark"
@@ -83,4 +84,6 @@ export const Location = ({
       </div>
     </Form>
   );
-};
+}
+
+export default Location;

@@ -1,13 +1,16 @@
 import { PageTitle } from "@/components/PageTitle";
 import React from "react";
-import { PropertyForm } from "../_components/property-form";
+import PropertiesForm from "../_components/property-form";
+import { App } from "antd";
 
 const CreatePropertyPage = () => {
   return (
-    <div className="mt-8">
-      <PageTitle title="Create Property" />
-      <PropertyForm />
-    </div>
+    <App>
+      <div className="mt-8">
+        <PageTitle title="Create Property" />
+        <PropertiesForm />
+      </div>
+    </App>
   );
 };
 

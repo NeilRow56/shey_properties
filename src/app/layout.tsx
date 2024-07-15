@@ -5,7 +5,7 @@ import React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { Toaster } from "sonner";
-import { ThemeProvider } from "@/providers/theme-provider";
+
 import AntProvider from "@/providers/ant-provider";
 
 const font = Nunito({ subsets: ["latin"] });
@@ -23,11 +23,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body  className={`${font.className} ${"theme-zinc"}`}>
+        <body className={`${font.className} ${"theme-zinc"}`}>
           <AntProvider>
             <Toaster richColors />
             {children}
-            </AntProvider>
+          </AntProvider>
         </body>
       </html>
     </ClerkProvider>

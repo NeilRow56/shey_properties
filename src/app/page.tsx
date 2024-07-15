@@ -1,8 +1,8 @@
-import { getCurrentUser } from "@/actions/user";
+import { GetCurrentUserFromMongoDB } from "@/actions/user";
 import { Header } from "@/components/Header";
 
 export default function Home() {
-  getCurrentUser();
+  GetCurrentUserFromMongoDB();
   return (
     <div>
       <Header />

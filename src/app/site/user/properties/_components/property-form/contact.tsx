@@ -1,30 +1,59 @@
-import React, { useState } from "react";
+import React from "react";
 import { PropertiesFormStepProps } from ".";
 import { Button, Form, Input, Select, message } from "antd";
 import { UploadFilesToFirebaseAndReturnUrls } from "@/helpers/upload-media";
+import { AddProperty, EditProperty } from "@/actions/properties";
+import { useRouter, useParams } from "next/navigation";
 
-export const Contact = ({
+function Contact({
   currentStep,
   setCurrentStep,
   finalValues,
   setFinalValues,
-}: PropertiesFormStepProps) => {
+  loading,
+  setLoading,
+  isEdit = false,
+}: PropertiesFormStepProps) {
+  const { id }: any = useParams();
+  const router = useRouter();
   const onFinish = async (values: any) => {
     try {
+      setLoading(true);
       const tempFinalValues = { ...finalValues, contact: values };
 
       // handle media upload
       const tempMedia = tempFinalValues.media;
-      tempMedia.images = await UploadFilesToFirebaseAndReturnUrls(
+      const newImagesURLS = await UploadFilesToFirebaseAndReturnUrls(
         tempMedia.newlyUploadedFiles
       );
 
+      tempMedia.images = [...tempMedia.images, ...newImagesURLS];
+
       tempFinalValues.media = tempMedia;
-      console.log(tempFinalValues);
+      const valuesAsPerDb = {
+        ...tempFinalValues.basic,
+        ...tempFinalValues.location,
+        ...tempFinalValues.amenities,
+        ...tempFinalValues.contact,
+        images: tempFinalValues.media.images,
+      };
+      let response = null;
+      if (isEdit) {
+        response = await EditProperty(valuesAsPerDb, id);
+      } else {
+        response = await AddProperty(valuesAsPerDb);
+      }
+      if (response.error) throw new Error(response.error);
+      message.success(response.message);
+      router.push("/site/user/properties");
     } catch (error: any) {
       message.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
+
+  // ownerName , ownerEmail , ownerPhone , ownerAddress , showOwnerContact
   return (
     <Form
       onFinish={onFinish}
@@ -94,10 +123,12 @@ export const Contact = ({
         >
           Back
         </Button>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loading}>
           Save Property
         </Button>
       </div>
     </Form>
   );
-};
+}
+
+export default Contact;

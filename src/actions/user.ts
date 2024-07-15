@@ -3,9 +3,8 @@
 import db from "@/lib/db";
 
 import { currentUser } from "@clerk/nextjs/server";
-import { z } from "zod";
 
-export const getCurrentUser = async () => {
+export const GetCurrentUserFromMongoDB = async () => {
   try {
     //check if user already esists
 

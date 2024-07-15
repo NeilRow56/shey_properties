@@ -20,12 +20,12 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { getCurrentUser } from "@/actions/user";
+import { GetCurrentUserFromMongoDB } from "@/actions/user";
 
 export const Navbar = async () => {
   const clerkUser = await currentUser();
 
-  const user = await getCurrentUser();
+  const user = await GetCurrentUserFromMongoDB();
 
   if (!user.data?.isAdmin) {
     return (

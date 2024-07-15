@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { App } from "antd";
 import { ConfigProvider } from "antd";
 
 function AntProvider({ children }: { children: React.ReactNode }) {
@@ -15,7 +16,7 @@ function AntProvider({ children }: { children: React.ReactNode }) {
             Button: {
               controlHeight: 40,
               boxShadow: "none",
-              
+
               colorPrimaryActive: "#1B4242",
               controlOutline: "none",
               colorBorder: "#1B4242",
@@ -38,7 +39,7 @@ function AntProvider({ children }: { children: React.ReactNode }) {
           },
         }}
       >
-        {children}
+        <App>{children}</App>
       </ConfigProvider>
     </div>
   );

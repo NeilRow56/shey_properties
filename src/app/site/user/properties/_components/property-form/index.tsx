@@ -1,37 +1,52 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Steps } from "antd";
+
+import Contact from "./contact";
 import { Basic } from "./basic";
-import { Location } from "./location";
+
 import { Amenities } from "./amenities";
 import { Media } from "./media";
-import { Contact } from "./contact";
-import { Steps } from "antd";
+import Location from "./location";
 
 export interface PropertiesFormStepProps {
   currentStep: number;
   setCurrentStep: (currentStep: number) => void;
   finalValues: any;
   setFinalValues: (finalValues: any) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+  isEdit?: boolean;
 }
 
-export const PropertyForm = () => {
-  const [finalValues, setFinalValues] = useState({
-    basic: {},
-    location: {},
-    amenities: {},
+function PropertiesForm({
+  initialValues = {},
+  isEdit = false,
+}: {
+  initialValues?: any;
+  isEdit?: boolean;
+}) {
+  const [finalValues, setFinalValues] = React.useState({
+    basic: initialValues,
+    location: initialValues,
+    amenities: initialValues,
     media: {
       newlyUploadedFiles: [],
-      images: [],
+      images: initialValues?.images || [],
     },
-    contact: {},
+    contact: initialValues,
   });
-  const [currentStep = 0, setCurrentStep] = useState(0);
+  const [currentStep = 0, setCurrentStep] = React.useState(0);
+  const [loading = false, setLoading] = React.useState(false);
 
   const commonPropsForSteps: any = {
     currentStep,
     setCurrentStep,
     finalValues,
     setFinalValues,
+    loading,
+    setLoading,
+    isEdit,
   };
 
   const steps = [
@@ -60,11 +75,14 @@ export const PropertyForm = () => {
   useEffect(() => {
     console.log(finalValues);
   }, [finalValues]);
+
   return (
-    <div className="py-12">
+    <div>
       <Steps className="text-sm" current={currentStep} items={steps} />
 
       <div className="mt-8">{steps[currentStep].content}</div>
     </div>
   );
-};
+}
+
+export default PropertiesForm;
