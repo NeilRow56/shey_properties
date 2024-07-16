@@ -1,7 +1,5 @@
 import React, { Suspense } from "react";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { PageTitle } from "@/components/PageTitle";
 import { LinkButton } from "@/components/LinkButton";
 import { Filters } from "@/components/Filters";

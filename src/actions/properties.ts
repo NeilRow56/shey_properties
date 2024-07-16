@@ -43,3 +43,21 @@ export const EditProperty = async (property: Property, id: string) => {
     };
   }
 };
+
+export const DeleteProperty = async (id: string) => {
+  try {
+    await db.property.delete({
+      where: {
+        id: id,
+      },
+    });
+    revalidatePath("/site/user/properties");
+    return {
+      message: "Property deleted successfully",
+    };
+  } catch (error: any) {
+    return {
+      error: error.message,
+    };
+  }
+};

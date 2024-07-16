@@ -1,16 +1,33 @@
 "use client";
 
+import { DeleteProperty } from "@/actions/properties";
 import { Property } from "@prisma/client";
 import { Button, Table, message } from "antd";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const PropertiesTableClientide = ({
   properties,
 }: {
   properties: Property[];
 }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+
+  const onDelete = async (id: string) => {
+    try {
+      setLoading(true);
+      const response = await DeleteProperty(id);
+      if (response.error) throw new Error(response.error);
+      message.success(response.message);
+    } catch (error: any) {
+      message.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const columns: any = [
     {
       title: "Property Name",
@@ -51,7 +68,12 @@ export const PropertiesTableClientide = ({
             <Button size="small" onClick={() => {}}>
               Queries
             </Button>
-            <Button size="small" onClick={() => {}}>
+            <Button
+              size="small"
+              onClick={() => {
+                onDelete(record.id);
+              }}
+            >
               <i className="ri-delete-bin-line"></i>
             </Button>
             <Button
@@ -89,9 +111,13 @@ export const PropertiesTableClientide = ({
   //   }
   return (
     <div>
-      <div>Properties Table Client Side</div>
       <div className="capitalize">
-        <Table dataSource={properties} columns={columns} rowKey="id" />
+        <Table
+          dataSource={properties}
+          columns={columns}
+          loading={loading}
+          rowKey="id"
+        />
       </div>
     </div>
   );
