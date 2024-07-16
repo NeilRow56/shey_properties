@@ -1,14 +1,19 @@
 import { GetCurrentUserFromMongoDB } from "@/actions/user";
+import { Filters } from "@/components/Filters";
 import { Header } from "@/components/Header";
+import { Spinner } from "@/components/Loader";
+import { Suspense } from "react";
+import PropertiesData from "./site/_components/properties-data";
 
 export default function Home() {
   GetCurrentUserFromMongoDB();
   return (
     <div>
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <h1 className="text-4xl text-primary font-semibold">Home Page</h1>
-      </main>
+      <Filters />
+      <Suspense fallback={<Spinner />}>
+        <PropertiesData />
+      </Suspense>
     </div>
   );
 }

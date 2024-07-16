@@ -77,7 +77,7 @@ function PropertiesForm({
   }, [finalValues]);
 
   return (
-    <div>
+    <div className="px-4">
       <Steps className="text-sm" current={currentStep} items={steps} />
 
       <div className="mt-8">{steps[currentStep].content}</div>

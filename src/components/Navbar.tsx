@@ -90,8 +90,10 @@ export const Navbar = async () => {
               </div>
             ) : (
               <div className="">
-                <Button asChild size="sm" className="px-6  ">
-                  <Link href="/login">Login</Link>
+                <Button asChild size="sm" className="px-6  bg-[#1B4242]">
+                  <Link href="/login" className="text-[#1B4242]">
+                    Login
+                  </Link>
                 </Button>
               </div>
             )}
@@ -107,7 +109,7 @@ export const Navbar = async () => {
                   <Button
                     size="lg"
                     variant="ghost"
-                    className="text-slate-50 text-lg"
+                    className=" text-lg bg-[#1B4242] "
                   >
                     Login
                   </Button>
@@ -181,7 +183,7 @@ export const Navbar = async () => {
               </div>
             ) : (
               <div className="">
-                <Button asChild size="sm" className="px-6  ">
+                <Button asChild size="sm" className="px-6  bg-[#1B4242]">
                   <Link href="/login">Login</Link>
                 </Button>
               </div>
@@ -198,7 +200,7 @@ export const Navbar = async () => {
                   <Button
                     size="lg"
                     variant="ghost"
-                    className="text-slate-50 text-lg"
+                    className="text-slate-50 text-lg bg-[#1B4242]"
                   >
                     Login
                   </Button>

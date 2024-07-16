@@ -11,8 +11,10 @@ import { Loader } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { currentUser } from "@clerk/nextjs/server";
 
-export const Header = () => {
+export const Header = async () => {
+  const clerkUser = await currentUser();
   return (
     <header className="h-20 w-full border-b-2 border-slate-200 px-4 bg-[#1B4242] ">
       <div className="mx-auto flex h-full items-center justify-between lg:max-w-screen-lg">
@@ -30,7 +32,7 @@ export const Header = () => {
             <SignedIn>
               <Button asChild variant="ghost">
                 <Link href="/site/user/properties" className="text-slate-50">
-                  Your properties
+                  {clerkUser?.username}
                 </Link>
               </Button>
               <UserButton />
@@ -40,7 +42,7 @@ export const Header = () => {
                 <Button
                   size="lg"
                   variant="ghost"
-                  className="text-slate-50 text-lg"
+                  className="text-[#1B4242] text-lg cursor-pointer"
                 >
                   Login
                 </Button>
