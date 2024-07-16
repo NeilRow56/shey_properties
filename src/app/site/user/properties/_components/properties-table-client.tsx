@@ -79,7 +79,9 @@ export const PropertiesTableClientide = ({
             <Button
               size="small"
               onClick={() =>
-                router.push(`/site/user/properties/create-property${record.id}`)
+                router.push(
+                  `/site/user/properties/create-property?cloneFrom=${record.id}`
+                )
               }
             >
               <i className="ri-file-copy-line"></i>
