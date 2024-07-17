@@ -83,6 +83,14 @@ export const Navbar = async () => {
                           Subscriptions
                         </Link>
                       </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link
+                          className="no-underline"
+                          href="/site/user/queries"
+                        >
+                          Queries
+                        </Link>
+                      </DropdownMenuItem>
                       <DropdownMenuSeparator className="bg-gray-200" />
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -174,6 +182,14 @@ export const Navbar = async () => {
                           href="/site/user/subscriptions"
                         >
                           Subscriptions
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link
+                          className="no-underline"
+                          href="/site/user/queries"
+                        >
+                          Queries
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator className="bg-gray-200" />
