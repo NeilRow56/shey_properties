@@ -4,6 +4,7 @@ import db from "@/lib/db";
 import { Property } from "@prisma/client";
 import React from "react";
 import { Carousel } from "antd";
+import QueryModal from "../_components/query-modal";
 
 interface Props {
   params: {
@@ -41,7 +42,7 @@ const IndividualPropertyPage = async ({ params: { id } }: Props) => {
   );
 
   return (
-    <div className="mt-12">
+    <div className="mt-12 px-4">
       <LinkButton title="Back to Properties" href="/" />
       <h1 className="text-2xl font-bold text-primary my-5">{property.name}</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -113,6 +114,7 @@ const IndividualPropertyPage = async ({ params: { id } }: Props) => {
               })}
             </div>
           )}
+          <QueryModal propertyId={property.id} />
         </div>
       </div>
     </div>
