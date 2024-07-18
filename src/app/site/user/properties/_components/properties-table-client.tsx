@@ -6,6 +6,7 @@ import { Button, Table, message } from "antd";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import PropertyQueries from "./property-queries";
 
 export const PropertiesTableClientide = ({
   properties,
@@ -13,6 +14,10 @@ export const PropertiesTableClientide = ({
   properties: Property[];
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [showQueries, setShowQueries] = useState<boolean>(false);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
   const router = useRouter();
 
   const onDelete = async (id: string) => {
@@ -65,7 +70,13 @@ export const PropertiesTableClientide = ({
       render(value: any, record: Property) {
         return (
           <div className="flex gap-5">
-            <Button size="small" onClick={() => {}}>
+            <Button
+              size="small"
+              onClick={() => {
+                setSelectedProperty(record);
+                setShowQueries(true);
+              }}
+            >
               Queries
             </Button>
             <Button
@@ -120,6 +131,13 @@ export const PropertiesTableClientide = ({
           loading={loading}
           rowKey="id"
         />
+        {showQueries && (
+          <PropertyQueries
+            selectedProperty={selectedProperty}
+            showQueriesModal={showQueries}
+            setShowQueriesModal={setShowQueries}
+          />
+        )}
       </div>
     </div>
   );
